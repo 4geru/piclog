@@ -4,6 +4,7 @@ from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 import reportlab.lib.colors as color
+from PIL import Image
 
 
 def make(filename="pdftest"):
@@ -11,6 +12,7 @@ def make(filename="pdftest"):
     print_string(pdf_canvas)
     print_figure(pdf_canvas)
     print_line(pdf_canvas)
+    print_image(pdf_canvas)
     pdf_canvas.save()
 
 
@@ -21,7 +23,7 @@ def set_info(filename):
     pdf_canvas.setAuthor("ともっくす")
     pdf_canvas.setTitle("pythonを使ってpdf_canvasを生成する")
     pdf_canvas.setSubject("reportlab")
-
+    
     return pdf_canvas
 
 
@@ -72,6 +74,13 @@ def print_line(pdf_canvas):
     lines = [(100, 650, 200, 750), (200, 750, 300, 650), (300, 650, 300, 750), (100, 700, 400, 700)]
     pdf_canvas.lines(lines)
 
+
+def print_image(pdf_canvas):
+    image = Image.open('./img/panda.jpeg')
+    image = image.transpose(Image.FLIP_TOP_BOTTOM)
+    pdf_canvas.drawInlineImage(image,0,-image.size[1])
+
+    
 
 if __name__ == '__main__':
     make()
