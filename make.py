@@ -3,6 +3,7 @@
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
+from reportlab.lib.pagesizes import letter, landscape
 import reportlab.lib.colors as color
 from PIL import Image
 
@@ -18,7 +19,8 @@ def make(filename="pdftest"):
 
 # 初期設定
 def set_info(filename):
-    pdf_canvas = canvas.Canvas("./{0}.pdf".format(filename), bottomup=False)  # 原点は左上
+    # print(letter) # height, width
+    pdf_canvas = canvas.Canvas("./{0}.pdf".format(filename), bottomup=False, pagesize=landscape(letter))  # 原点は左上
         
     pdf_canvas.setAuthor("ともっくす")
     pdf_canvas.setTitle("pythonを使ってpdf_canvasを生成する")
