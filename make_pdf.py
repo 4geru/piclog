@@ -6,15 +6,15 @@ from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 from reportlab.lib.pagesizes import letter, landscape
 import reportlab.lib.colors as color
 from PIL import Image
-
-def make(filename="pdftest"):
-    pdf_canvas = set_info(filename)
+import io
+import urllib.request
+def make(sentence, img_url):
+    pdf_canvas = set_info('絵日記')
     print_title(pdf_canvas,'title')
-    print_image(pdf_canvas)
+    print_image(pdf_canvas, img_url)
     print_box(pdf_canvas)
-    print_word(pdf_canvas)
+    print_word(pdf_canvas, sentence)
     pdf_canvas.save()
-
 
 # 初期設定
 def set_info(filename):
@@ -22,7 +22,7 @@ def set_info(filename):
     pdf_canvas = canvas.Canvas("./{0}.pdf".format(filename), bottomup=False, pagesize=letter)  # 原点は左上
         
     pdf_canvas.setAuthor("しげる")
-    pdf_canvas.setTitle("pythonを使ってpdf_canvasを生成する")
+    pdf_canvas.setTitle("絵日記")
     pdf_canvas.setSubject("reportlab")
     
     return pdf_canvas
@@ -47,7 +47,7 @@ def print_string(pdf_canvas):
     pdf_canvas.setFont("HeiseiMin-W3", 30)
     pdf_canvas.drawString(300, 100, "明朝体をサイズ30で")
 
-def print_word(pdf_canvas):
+def print_word(pdf_canvas, sentence):
     # フォントを登録する
     pdfmetrics.registerFont(UnicodeCIDFont("HeiseiKakuGo-W5"))
 
@@ -55,10 +55,13 @@ def print_word(pdf_canvas):
     pdf_canvas.setFont("HeiseiKakuGo-W5", 20)
     step = 40
     idx = 0
-    arr = ['1','2','3','4','5','6','7']
+    arr = sentence
     for i in range(586-step,26-step,-step):
       for j in range(360,760,step):
-        pdf_canvas.drawString(i+10, j+10+19, str(idx%100))
+        if len(arr) > idx:
+            pdf_canvas.drawString(i+10, j+10+19, str(arr[idx]))
+        else:
+            break
         idx += 1
 
 def print_box(pdf_canvas):
@@ -73,8 +76,9 @@ def print_box(pdf_canvas):
     pdf_canvas.line(26, i, 586, i)
 
 # 画像
-def print_image(pdf_canvas):
-    image = Image.open('./img/panda.jpeg')
+def print_image(pdf_canvas, img_url):
+    f = io.BytesIO(urllib.request.urlopen(img_url).read())
+    image = Image.open(f)
     image = image.transpose(Image.FLIP_TOP_BOTTOM)
     print(letter)
     # x,y,width,height
@@ -85,6 +89,3 @@ def print_image(pdf_canvas):
 
     print(image.size)
     pdf_canvas.drawInlineImage(image,letter[0]/2-width/2,height_margin-height, width, height)
-
-if __name__ == '__main__':
-    make()
