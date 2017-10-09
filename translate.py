@@ -1,3 +1,5 @@
+
+from multiprocessing import Pool
 import requests, json
 
 def translate(word): 
@@ -8,8 +10,7 @@ def translate(word):
     return japanese
     
 def translate_array(english_words):
-    japanese_words = []
-    for word in english_words:
-        japanese_words.append(translate(word))
+    p = Pool(16)
+    japanese_words = p.map( translate, english_words )
     return japanese_words
 # print(japanese_words)
