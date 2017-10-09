@@ -68,4 +68,4 @@ def main(words = None):
         word = words[idx]
     return sentence
     
-print(main())
+# print(main())

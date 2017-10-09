@@ -3,6 +3,7 @@ from multiprocessing import Pool
 import requests, json
 import multiprocessing as multi
 import time
+
 def translate(word): 
     payload = {'from': 'en', 'dest': 'ja', 'format': 'json', 'phrase': word, 'pretty': 'true'}
     r = requests.get('https://glosbe.com/gapi/translate', params=payload)
