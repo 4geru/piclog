@@ -18,8 +18,10 @@ pythonからpdfを自動生成する.
 [画像回転](http://symfoware.blog68.fc2.com/blog-entry-1533.html)
 
 ## test
-[参照](https://qiita.com/hoto17296/items/fa0166728177e676cd36)
+[test](https://qiita.com/hoto17296/items/fa0166728177e676cd36)
+[coverage](http://myenigma.hatenablog.com/entry/2015/05/23/173423#テストカバレージ)
 
 ```
- $  python -m unittest discover tests
+ $ python -m unittest discover tests
+ $ coverage run -m unittest discover tests
 ```
