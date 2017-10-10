@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import requests, random, json
-from env import ENV
+from lib.env import ENV
 
 def request_predict(sentence):
     payload = {'apikey': ENV('TEST_SUGGEST_KEY'), 'previous_description': sentence, 'separation': 2}

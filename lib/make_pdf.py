@@ -80,12 +80,12 @@ def print_image(pdf_canvas, img_url):
     f = io.BytesIO(urllib.request.urlopen(img_url).read())
     image = Image.open(f)
     image = image.transpose(Image.FLIP_TOP_BOTTOM)
-    print(letter)
+    
     # x,y,width,height
     width = 552
     height = 276
     title_space = 40
     height_margin = title_space+(360-title_space)/2 - height/2
 
-    print(image.size)
+    
     pdf_canvas.drawInlineImage(image,letter[0]/2-width/2,height_margin-height, width, height)

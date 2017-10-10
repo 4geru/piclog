@@ -1,4 +1,4 @@
-from env import ENV
+from lib.env import ENV
 import http.client, urllib.request, urllib.parse, urllib.error, base64, json
 def analyze(img):
     
