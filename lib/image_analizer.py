@@ -1,14 +1,13 @@
+from env import ENV
 import http.client, urllib.request, urllib.parse, urllib.error, base64, json
 def analyze(img):
-    # Replace the subscription_key string value with your valid subscription key.
-    subscription_key = '964ad916f8fa43a6a46d10fa7d6aec28'
     
     uri_base = 'westcentralus.api.cognitive.microsoft.com'
     
     headers = {
         # Request headers.
         'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': subscription_key,
+        'Ocp-Apim-Subscription-Key': ENV('SUBSCRIPTION_KEY'),
     }
     
     params = urllib.parse.urlencode({

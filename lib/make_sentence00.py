@@ -1,4 +1,5 @@
 import requests, random, json, MeCab
+from env import ENV
 
 def make(words):
   prev_sentence = words[0]
@@ -11,7 +12,7 @@ def make(words):
     
     while True:
       # print('<< retry >> ')
-      payload = {'apikey': 'EtEj5GxZF4uyobFKkoyfo3h7UKCONn2I', 'previous_description': prev_sentence}
+      payload = {'apikey': ENV('TEXT_SUGGEST_KEY'), 'previous_description': prev_sentence}
       json = requests.get('https://api.a3rt.recruit-tech.co.jp/text_suggest/v2/predict', params=payload).json()
       
       # 次のワードの瀕死を抽出
@@ -42,7 +43,7 @@ def make(words):
       
       # print(next_words + words[index+1])
     
-      payload = {'apikey': 'a6WEeoq1GLUbSsYL10BHJB4QsNNS8SH1', 'sentence': next_words + words[index+1]}
+      payload = {'apikey': ENV('PROOFREADING_KEY'), 'sentence': next_words + words[index+1]}
       json = requests.get('https://api.a3rt.recruit-tech.co.jp/proofreading/v1/typo', params=payload).json()
       if json['status'] == 0 or check_sentence == 0:
         break
@@ -59,7 +60,7 @@ def make(words):
     # print(next_words + words[index+1])
   
   # 文末に文字を追加
-  payload = {'apikey': 'EtEj5GxZF4uyobFKkoyfo3h7UKCONn2I', 'previous_description': prev_sentence}
+  payload = {'apikey': ENV('TEXT_SUGGEST_KEY'), 'previous_description': prev_sentence}
   r = requests.get('https://api.a3rt.recruit-tech.co.jp/text_suggest/v2/predict', params=payload)
   json = r.json()
   return prev_sentence + json['suggestion'][0]

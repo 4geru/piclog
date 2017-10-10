@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 
 import requests, random, json
+from env import ENV
 
 def request_predict(sentence):
-    payload = {'apikey': 'EtEj5GxZF4uyobFKkoyfo3h7UKCONn2I', 'previous_description': sentence, 'separation': 2}
+    payload = {'apikey': ENV('TEST_SUGGEST_KEY'), 'previous_description': sentence, 'separation': 2}
     predict_json = requests.get('https://api.a3rt.recruit-tech.co.jp/text_suggest/v2/predict', params=payload).json()
     # print("predict >> length {0}!".format(len(predict_json['suggestion'])))
     return predict_json
 
 def request_typo(sentence):
-    payload = {'apikey': 'a6WEeoq1GLUbSsYL10BHJB4QsNNS8SH1', 'sentence': sentence}
+    payload = {'apikey': ENV('PROOFREADING_KEY'), 'sentence': sentence}
     typo_json = requests.get('https://api.a3rt.recruit-tech.co.jp/proofreading/v1/typo', params=payload).json()
     return typo_json
 
