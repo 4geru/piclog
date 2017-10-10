@@ -36,7 +36,7 @@ def select_best(before, suggestion):
     # print(best_sentence)
     return best_sentence[1]
     
-def main(words = None):
+def make_sentence(words = None):
     # original http://farm4.staticflickr.com/3450/3372087016_5176833783_z.jpg
     if words == None:
         words = ['スキー','ウェア','ゼッケン','滑る','着','子供','する','フープ','フラ','選手','付け','ヘルメット','雪','赤い','ピンク','女性','つけ','競技','回し','男性']

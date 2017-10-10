@@ -1,7 +1,7 @@
 import requests, random, json, MeCab
 from app.lib.env import ENV
 
-def make(words):
+def make_sentence(words):
   prev_sentence = words[0]
   bf = 0
   for w in range(0,5) :
@@ -66,6 +66,4 @@ def make(words):
   return prev_sentence + json['suggestion'][0]
 # print(prev_sentence + json['suggestion'][0])
 # print(len(prev_sentence+json['suggestion'][0]))
-words = ['投げる','ピッチャー','ボール','ユニフォーム','野球','バッター','試合','打','球','サッカー','チーム','選手','赤い','着','する','緑','球場','バット','人','テニス']
-
-print(make(words))
+# words = ['投げる','ピッチャー','ボール','ユニフォーム','野球','バッター','試合','打','球','サッカー','チーム','選手','赤い','着','する','緑','球場','バット','人','テニス']

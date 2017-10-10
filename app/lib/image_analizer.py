@@ -1,6 +1,6 @@
 from app.lib.env import ENV
 import http.client, urllib.request, urllib.parse, urllib.error, base64, json
-def analyze(img):
+def image_analizer(img):
     
     uri_base = 'westcentralus.api.cognitive.microsoft.com'
     

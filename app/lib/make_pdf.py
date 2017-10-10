@@ -8,7 +8,7 @@ import reportlab.lib.colors as color
 from PIL import Image
 import io
 import urllib.request
-def make(sentence, img_url):
+def make_pdf(sentence, img_url):
     pdf_canvas = set_info('piclog')
     print_title(pdf_canvas,'piclog')
     print_image(pdf_canvas, img_url)
