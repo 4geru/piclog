@@ -6,11 +6,18 @@
 
 ## 利用方法
 
-python3 \_application\_name\_  \_IMAGE\_URL\_
+```
+ $ python3 \_application\_name\_  \_IMAGE\_URL\_
+```
+
+## 環境構築の仕方
+
+```
+ $ pip install -r packages.txt
+```
 
 ##  仕様技術
 
-### 言語
 ||利用技術|その他|
 |:---|:---|:---|
 |言語|python|3.6.0|
@@ -45,3 +52,6 @@ python3 \_application\_name\_  \_IMAGE\_URL\_
 
 ## Azure
 - [Computer Vision Python Quick Starts](https://docs.microsoft.com/ja-jp/azure/cognitive-services/computer-vision/quickstarts/python)
+
+## package管理
+- [pipのlistとfreezeの違い - 君たちは永遠にそいつらより若い](http://kuteken.hatenablog.com/entry/2015/03/21/211936)
