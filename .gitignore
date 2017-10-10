@@ -62,3 +62,10 @@ target/
 .ipynb_checkpoints
 
 node_modules/
+
+# add by 4geru
+*.pdf
+.env
+*,cover
+htmlcov
+
