@@ -2,16 +2,18 @@ from app.lib.env import ENV
 import http.client, urllib.request, urllib.parse, urllib.error, base64, json
 
 class image_analizer:
-    def __init__(img):
-        self.search(img)
+    def __init__(self, img):
+        self.arr = self.search(img)
         
-    def search(img):
+    def get(self):
+        return self.arr
+        
+    def search(self, img):
         """ Azure Vision APIへリクエスト 
          >> img : string URL
          << english_words : list
         """    
         uri_base = 'westcentralus.api.cognitive.microsoft.com'
-        
         headers = {
             # Request headers.
             'Content-Type': 'application/json',

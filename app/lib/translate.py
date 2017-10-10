@@ -6,15 +6,17 @@ import time
 
 class translate:
     """ 翻訳に関するclass """
-    def __init__(english_words):
+    def __init__(self, english_words):
         """ 英単語を翻訳する """
         # 並列処理をしている
         p = Pool(len(english_words))
-        japanese_words = p.map( get_translate, english_words )
+        self.japanese_words = p.map( self.get_translate, english_words )
         p.close()
-        return japanese_words
         
-    def get_translate(word):
+    def get(self):
+        return self.japanese_words
+        
+    def get_translate(self, word):
         """ 1ワードを翻訳 """
         payload = {'from': 'en', 'dest': 'ja', 'format': 'json', 'phrase': word, 'pretty': 'true'}
         r = requests.get('https://glosbe.com/gapi/translate', params=payload)

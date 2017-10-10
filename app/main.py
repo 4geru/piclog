@@ -11,7 +11,6 @@ def main(argv):
   # ---
   # This is a sample code to use arguments and outputs.
   # Edit and remove this code as you like.
-
   argc = len(argv) # 引数の個数
   if argc != 1:
     print('ERROR : PLEASE INPUT URL')
@@ -21,13 +20,13 @@ def main(argv):
   img = argv[0]
   # analyze 単語(DescriptionのTags) -> words
   print("analyze image\t>> doing", end="")
-  english_words = image_analizer(img)
+  english_words = image_analizer(img).get()
   # print(english_words)
   print(' >> finished')
     
   # translate 英単語 -> 日本語単語
   print('translate words\t>> doing', end="")
-  japanese_words = translate(english_words)
+  japanese_words = translate(english_words).get()
   #print(japanese_words)
   print(' >> finished')
     
