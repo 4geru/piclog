@@ -4,8 +4,9 @@ from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 from reportlab.lib.pagesizes import letter, landscape
-import reportlab.lib.colors as color
+from datetime import datetime
 from PIL import Image
+import reportlab.lib.colors as color
 import io
 import urllib.request
 def make_pdf(sentence, img_url):
@@ -20,7 +21,7 @@ def make_pdf(sentence, img_url):
 def set_info(filename):
     # print(letter) # height, width
     pdf_canvas = canvas.Canvas("./{0}.pdf".format(filename), bottomup=False, pagesize=letter)  # 原点は左上
-        
+    # [TODO] 考える
     pdf_canvas.setAuthor("しげる")
     pdf_canvas.setTitle("PicLog")
     pdf_canvas.setSubject("PicLog")
@@ -31,21 +32,11 @@ def print_title(pdf_canvas,word):
     pdfmetrics.registerFont(UnicodeCIDFont("HeiseiKakuGo-W5"))
     pdfmetrics.registerFont(UnicodeCIDFont("HeiseiMin-W3"))
     pdf_canvas.setFont("HeiseiKakuGo-W5", 20)
-    pdf_canvas.drawString(30, 45, "絵日記 2017/10/06(金) 名前 : さきさか しげる")
-
-# 文字
-def print_string(pdf_canvas):
-    # フォントを登録する
-    pdfmetrics.registerFont(UnicodeCIDFont("HeiseiKakuGo-W5"))
-    pdfmetrics.registerFont(UnicodeCIDFont("HeiseiMin-W3"))
-
-    # ゴシック体をサイズ15で
-    pdf_canvas.setFont("HeiseiKakuGo-W5", 15)
-    pdf_canvas.drawString(50, 50, "ゴシック体をサイズ15で")
-
-    # 明朝体をサイズ30で
-    pdf_canvas.setFont("HeiseiMin-W3", 30)
-    pdf_canvas.drawString(300, 100, "明朝体をサイズ30で")
+    
+    weekdays = ["月","火","水","木","金","土","日"]
+    now = datetime.now()
+    date = now.strftime("%Y/%m/%d")
+    pdf_canvas.drawString(30, 45, "{0}({1}) 名前 : さきさか しげる".format(date, weekdays[now.weekday()]))
 
 def print_word(pdf_canvas, sentence):
     # フォントを登録する
@@ -89,3 +80,7 @@ def print_image(pdf_canvas, img_url):
 
     
     pdf_canvas.drawInlineImage(image,letter[0]/2-width/2,height_margin-height, width, height)
+
+if __name__ == "__main__":
+    sentence = 'a'*140
+    make_pdf(sentence, 'http://img.mcdonalds.co.jp/index/graphic/main_170920a.jpg')
