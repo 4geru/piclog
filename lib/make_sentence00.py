@@ -1,11 +1,7 @@
-import requests
-import random
-import json
-import MeCab
-def make_sentence(words = None):
-  if words == None:
-    words = ['投げる','ピッチャー','ボール','ユニフォーム','野球','バッター','試合','打','球','サッカー','チーム','選手','赤い','着','する','緑','球場','バット','人','テニス']
-  
+import requests, random, json, MeCab
+from env import ENV
+
+def make(words):
   prev_sentence = words[0]
   bf = 0
   for w in range(0,5) :
@@ -15,8 +11,8 @@ def make_sentence(words = None):
     index = w
     
     while True:
-      print('<< retry >> ')
-      payload = {'apikey': 'EtEj5GxZF4uyobFKkoyfo3h7UKCONn2I', 'previous_description': prev_sentence}
+      # print('<< retry >> ')
+      payload = {'apikey': ENV('TEXT_SUGGEST_KEY'), 'previous_description': prev_sentence}
       json = requests.get('https://api.a3rt.recruit-tech.co.jp/text_suggest/v2/predict', params=payload).json()
       
       # 次のワードの瀕死を抽出
@@ -33,7 +29,7 @@ def make_sentence(words = None):
         surface = node.surface.split(",")[0]
         # print(node.surface, pos)
         if feature == next_feature and surface in words and check_used_word != 0 :
-          print('used same word')
+          # print('used same word')
           check_used_word -= 1
           index = random.randrange(len(words)-1)
           continue
@@ -45,28 +41,31 @@ def make_sentence(words = None):
         next_words += node.surface
         node = node.next
       
-      print(next_words + words[index+1])
+      # print(next_words + words[index+1])
     
-      payload = {'apikey': 'a6WEeoq1GLUbSsYL10BHJB4QsNNS8SH1', 'sentence': next_words + words[index+1]}
+      payload = {'apikey': ENV('PROOFREADING_KEY'), 'sentence': next_words + words[index+1]}
       json = requests.get('https://api.a3rt.recruit-tech.co.jp/proofreading/v1/typo', params=payload).json()
       if json['status'] == 0 or check_sentence == 0:
         break
       elif json['status'] == 1 or check_sentence == 0:
-        for alert in json['alerts']:
-          print("status 1 : " + alert['checkedSentence'])
+        # for alert in json['alerts']:
+          # print("status 1 : " + alert['checkedSentence'])
         break
-      else:
-        print(json)
+      # else:
+      #   print(json)
       check_sentence -= 1
     # 文字を追加
     prev_sentence = next_words + words[index+1]
     bf = len(prev_sentence)
-    print(next_words + words[index+1])
-    
+    # print(next_words + words[index+1])
+  
   # 文末に文字を追加
-  payload = {'apikey': 'EtEj5GxZF4uyobFKkoyfo3h7UKCONn2I', 'previous_description': prev_sentence}
+  payload = {'apikey': ENV('TEXT_SUGGEST_KEY'), 'previous_description': prev_sentence}
   r = requests.get('https://api.a3rt.recruit-tech.co.jp/text_suggest/v2/predict', params=payload)
   json = r.json()
-  # print(prev_sentence + json['suggestion'][0])
-  # print(len(prev_sentence+json['suggestion'][0]))
   return prev_sentence + json['suggestion'][0]
+# print(prev_sentence + json['suggestion'][0])
+# print(len(prev_sentence+json['suggestion'][0]))
+words = ['投げる','ピッチャー','ボール','ユニフォーム','野球','バッター','試合','打','球','サッカー','チーム','選手','赤い','着','する','緑','球場','バット','人','テニス']
+
+print(make(words))
