@@ -1,5 +1,5 @@
 import requests, random, json, MeCab
-from env import ENV
+from app.lib.env import ENV
 
 def make(words):
   prev_sentence = words[0]

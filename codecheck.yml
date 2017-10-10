@@ -1,5 +1,8 @@
 build:
+- sudo apt-get update
+- sudo apt-get install -y mecab mecab-ipadic-utf8 libc6-dev build-essential libmecab-dev libfreetype6-dev libxft-dev
 - pip3 install -r requirements.txt
 env:
   APP_COMMAND: python3 index.py
-test: mocha
+test:
+- python -m unittest discover tests

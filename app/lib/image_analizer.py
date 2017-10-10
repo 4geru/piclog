@@ -1,4 +1,4 @@
-from lib.env import ENV
+from app.lib.env import ENV
 import http.client, urllib.request, urllib.parse, urllib.error, base64, json
 def analyze(img):
     
@@ -16,7 +16,6 @@ def analyze(img):
     })
     
     body = "{'url':'" + img + "'}"
-    
     try:
         conn = http.client.HTTPSConnection('westcentralus.api.cognitive.microsoft.com')
         conn.request("POST", "/vision/v1.0/analyze?%s" % params, body, headers)
@@ -27,7 +26,7 @@ def analyze(img):
         conn.close()
         return parsed['description']['tags']
     except Exception as e:
-        print('Error:')
+        print('Error:', end='')
         print(e)
         return []
     

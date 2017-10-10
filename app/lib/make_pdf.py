@@ -9,8 +9,8 @@ from PIL import Image
 import io
 import urllib.request
 def make(sentence, img_url):
-    pdf_canvas = set_info('絵日記')
-    print_title(pdf_canvas,'title')
+    pdf_canvas = set_info('piclog')
+    print_title(pdf_canvas,'piclog')
     print_image(pdf_canvas, img_url)
     print_box(pdf_canvas)
     print_word(pdf_canvas, sentence)
@@ -22,8 +22,8 @@ def set_info(filename):
     pdf_canvas = canvas.Canvas("./{0}.pdf".format(filename), bottomup=False, pagesize=letter)  # 原点は左上
         
     pdf_canvas.setAuthor("しげる")
-    pdf_canvas.setTitle("絵日記")
-    pdf_canvas.setSubject("reportlab")
+    pdf_canvas.setTitle("PicLog")
+    pdf_canvas.setSubject("PicLog")
     
     return pdf_canvas
 
