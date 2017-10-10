@@ -4,7 +4,7 @@ import requests, random, json
 from lib.env import ENV
 
 def request_predict(sentence):
-    payload = {'apikey': ENV('TEST_SUGGEST_KEY'), 'previous_description': sentence, 'separation': 2}
+    payload = {'apikey': ENV('TEXT_SUGGEST_KEY'), 'previous_description': sentence, 'separation': 2}
     predict_json = requests.get('https://api.a3rt.recruit-tech.co.jp/text_suggest/v2/predict', params=payload).json()
     # print("predict >> length {0}!".format(len(predict_json['suggestion'])))
     return predict_json
