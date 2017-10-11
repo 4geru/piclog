@@ -20,14 +20,13 @@ def main(argv):
   img = argv[0]
   # analyze 単語(DescriptionのTags) -> words
   print("analyze image\t>> doing", end="")
-  english_words = image_analizer(img).get()
+  english_words = image_analizer(img)
   # print(english_words)
   print(' >> finished')
     
   # translate 英単語 -> 日本語単語
   print('translate words\t>> doing', end="")
-  japanese_words = translate(english_words).get()
-  #print(japanese_words)
+  japanese_words = translate(english_words)
   print(' >> finished')
     
   # make_sentence00 日本語単語 -> 文
