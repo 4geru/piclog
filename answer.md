@@ -43,7 +43,7 @@ Please run command!
 
 
 
-## PDF(日記)作成までの流れ
+## 日記(PDF)作成の流れ[Flow]
 <img src='images/flow.png' width='450px'>
 
 1. 画像から単語作成の流れ  
@@ -66,7 +66,7 @@ Text Suggest APIから返された文を Proofreading API を用いて、点数�
 `source code : make_pdf.py`  
 python3 の reportlab を用いて、PDF(日記)を自動生成させる。
 
-##  仕様技術
+##  仕様技術[Use Tecnology]
 
 ||利用技術|その他|
 |:---|:---|:---|
@@ -74,6 +74,7 @@ python3 の reportlab を用いて、PDF(日記)を自動生成させる。
 |利用API|A3RT Proofreading API|文章添削|
 ||A3RT Text suggest API|文章作成|
 ||Azure Vision API|画像から単語を作成|
+||Globe Translate API|英語翻訳|
 |ライブラリ|requests|APIリクエスト|
 ||mecab-python3|自然言語処理|
 ||pillow|画像処理|
@@ -81,7 +82,7 @@ python3 の reportlab を用いて、PDF(日記)を自動生成させる。
 ||coverage|coverage測定|
 ||python-dotenv|環境変数|
 
-## 工夫した点
+## 工夫した点[Devised Point]
 1. Azure Vision API
  - A3RTの画像認識APIでは、任意の画像に対する日記の作成が困難なため、Azure Vision APIを用いて、URLから日記を作成できるようにした点。
  - Azureの画像認識APIを用いることによって、英語の値が返ってくるため、翻訳を行なった点。
@@ -104,7 +105,7 @@ python3 の reportlab を用いて、PDF(日記)を自動生成させる。
  - PyDocを明記するなどの関数の役割を明確にした点。
  - `from file_name import method_name` でfile_name、method_name　ファイル名と関数名を同じにすることにより、可読性・保守性をあげた点。
 
-## 苦労した点
+## 苦労した点[Difficult Point]
 1. チームメンバーとの共有
  - 所在地が大阪・兵庫・滋賀に加え、所属大学が違うため、連携が取りずらかった点。
  - チームメンバー内で、日常的に利用しているプログラミング言語が異なるため、チーム内で、うまく作業を分担することができなかった点。
@@ -122,7 +123,7 @@ python3 の reportlab を用いて、PDF(日記)を自動生成させる。
 5. 作文作成が難しかった。
  - オブジェクト指向的を用いて、文に対して、全部のワード群を利用して、提案・修正を行ったが、最初に書いた直感的なプログラムの方が自然な日本語を生成できた。
 
-## 今回のA3RTに参加し，様々なAPIを触ってみて
+## 今回のA3RTに参加し，様々なAPIを触ってみて[Using A3RT API]
 1. Test Suggest APIのパラメーターで指定した部分の文字列を含む、作文をしてくれるとより作品の幅が広がったと感じる。
 2. Image Search APIの画像の関連ワード出せる機能をクライアント側の画像から出せるようにできたらより使いやすいと思った。
 3. Proofreading APIは文章として怪しい箇所のみを指摘するのではなく、添削の提案もしてくれるとAPIとして利用しやすいと感じた。
@@ -131,7 +132,7 @@ python3 の reportlab を用いて、PDF(日記)を自動生成させる。
 6. Talk API は、ユーザーローカル・ドコモ・Microsoftなどがすでに導入しているが負けずに頑張っていただきたいです。
 7. 今回のハッカソンを通して、チーム開発や限定されたAPIを使用するという決まりの元、ハッカソンを楽しみながらでき、いい勉強になりました。ありがとうございました。
 
-## 利用外部APIの選定について
+## 利用外部APIの選定について[Reason To Choose API]
 1. Azure Vision API  
 クライアント側の指定した画像の解析が可能であること。
 (※ 工夫 1. と同じ）
@@ -140,7 +141,7 @@ python3 の reportlab を用いて、PDF(日記)を自動生成させる。
 「Python 翻訳 API」と検索した際に使用しやすそうだったため使用した。
 Azure Translate API を利用しようとしたが時間がなかったため断念した。
 
-## 参考
+## 参考[Reference]
 
 ### PDF生成
 - [PythonでPDFを生成したい そしてサイコロを作りたい - \[\[ともっくす alloc\] init\]](http://o-tomox.hatenablog.com/entry/2013/07/22/221158)
