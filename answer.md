@@ -22,8 +22,12 @@ Please run command!
 
 ## 利用方法 [How to use]
 ### 実行コマンド
+コマンドを実行すると、piclog.pdfが生成されます。
+
 ```
- $ python3 \_application\_name\_  \_IMAGE\_URL\_
+ $ python3 _application_name_  _IMAGE_URL_
+ $ ls
+ piclog.pdf
 ```
 
 ### 環境構築
