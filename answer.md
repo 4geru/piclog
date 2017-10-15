@@ -3,19 +3,24 @@
 
 # 日記自動生成アプリ [piclog]
 
-## 概要[Summary]
+## 概要 [Summary]
 
 任意の画像から日記[PDF]を自動生成する。
 
-## きっかけ[Story]
+## きっかけ [Story]
 小学生の頃、長期休暇中に"絵日記"という宿題として出されることがあった。
 絵日記をもし、"機械"が作成したらどうなるのか、私たちは大変興味を持った。
-果たして、機械たちは私たちと同じような絵日記を作成できるのか！私たちの世界を機械たちはどのように認識するのか！
+果たして、機械たちは私たちと同じような絵日記を作成できるのか！
+私たちの世界を機械たちはどのように認識するのか！
 ぜひ、以下の実行コマンドを走らせてご覧ください！
 
+When we were elementary school students, we were given a homework "a picture diary". 
+We were very interested in what happens if "machines" creates "a picture diary".
+Can the machines create a picture diary similar to us!
+How do machines recognize our world?
+Please run command!
 
-
-## 利用方法[How to use]
+## 利用方法 [How to use]
 ### 実行コマンド
 ```
  $ python3 \_application\_name\_  \_IMAGE\_URL\_
@@ -72,7 +77,7 @@ python3 の reportlab を用いて、PDF(日記)を自動生成させる。
 |ライブラリ|requests|APIリクエスト|
 ||mecab-python3|自然言語処理|
 ||pillow|画像処理|
-||reportlab|pdf作成|
+||reportlab|PDF作成|
 ||coverage|coverage測定|
 ||python-dotenv|環境変数|
 
@@ -137,7 +142,7 @@ Azure Translate API を利用しようとしたが時間がなかったため断
 
 ## 参考
 
-### pdf生成
+### PDF生成
 - [PythonでPDFを生成したい そしてサイコロを作りたい - \[\[ともっくす alloc\] init\]](http://o-tomox.hatenablog.com/entry/2013/07/22/221158)
 - [pythonでReportLabを使ったPDFファイルの作り方〜その２〜 - Live the Life you Lov](http://www.llul.info/entry/2016/11/07/python%E3%81%A7ReportLab%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9FPDF%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E4%BD%9C%E3%82%8A%E6%96%B9%E3%80%9C%E3%81%9D%E3%81%AE%EF%BC%92%E3%80%9C)
 - [Python + Pillow(PIL)で画像の回転を行う(rotate, transpose) - Symfoware](http://symfoware.blog68.fc2.com/blog-entry-1533.html)
