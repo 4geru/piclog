@@ -1,7 +1,7 @@
 import re
 from app.lib.image_analizer import image_analizer
 from app.lib.translate import translate
-from app.lib.make_sentence00 import make_sentence
+from app.lib.make_sentence import make_sentence
 from app.lib.make_pdf import make_pdf
 from app.lib.env import ENV
 
@@ -22,20 +22,17 @@ def main(argv):
   print("analyze image\t>> doing", end="")
   english_words = image_analizer(img)
   # print(english_words)
-  print(' >> finished')
+  print(' >> finished\ntranslate words\t>> doing', end="")
     
   # translate 英単語 -> 日本語単語
-  print('translate words\t>> doing', end="")
   japanese_words = translate(english_words)
-  print(' >> finished')
+  print(' >> finished\nmake sentence\t>> doing', end="")
     
   # make_sentence00 日本語単語 -> 文
-  print('make sentence\t>> doing', end="")
   sentence = make_sentence(japanese_words)
   # print(sentence)
-  print(' >> finished')
+  print(' >> finished\nmake pdf\t>> doing', end="")
     
   # make_pdf 文 -> pdf
-  print('make pdf\t>> doing', end="")
   make_pdf(sentence,img)
   print(' >> finished')
