@@ -33,7 +33,7 @@
 
 
 ## PDF作成までの流れ
-<img src='flow.png' width='450px'>
+<img src='images/flow.png' width='450px'>
 
 1. 画像から単語作成の流れ  
 `source code : image_analizer.py`  
