@@ -17,7 +17,7 @@ class make_pdf:
          return  /piclog.pdf が生成されます
         """
         self.pdf_canvas = self.set_info('piclog')
-        self.print_title('piclog')
+        self.print_title()
         self.print_image(img_url)
         self.print_box()
         self.print_word(sentence)
@@ -31,7 +31,6 @@ class make_pdf:
         @return canvas detail
         """
         pdf_canvas = canvas.Canvas("./{0}.pdf".format(filename), bottomup=False, pagesize=letter)  # 原点は左上
-        # [TODO] 考える
         pdf_canvas.setAuthor("しげる")
         pdf_canvas.setTitle("PicLog")
         pdf_canvas.setSubject("PicLog")
