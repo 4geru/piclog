@@ -3,18 +3,19 @@
 
 # 日記自動生成アプリ [piclog]
 
-## 概要
+## 概要[Summary]
 
-任意の画像から日記を自動生成する。
+任意の画像から日記[PDF]を自動生成する。
 
-## きっかけ
+## きっかけ[Story]
 小学生の頃、長期休暇中に"絵日記"という宿題として出されることがあった。
 絵日記をもし、"機械"が作成したらどうなるのか、私たちは大変興味を持った。
 果たして、機械たちは私たちと同じような絵日記を作成できるのか！私たちの世界を機械たちはどのように認識するのか！
 ぜひ、以下の実行コマンドを走らせてご覧ください！
 
 
-## 利用方法
+
+## 利用方法[How to use]
 ### 実行コマンド
 ```
  $ python3 \_application\_name\_  \_IMAGE\_URL\_
@@ -37,7 +38,7 @@
 
 
 
-## PDF作成までの流れ
+## PDF(日記)作成までの流れ
 <img src='images/flow.png' width='450px'>
 
 1. 画像から単語作成の流れ  
@@ -56,9 +57,9 @@ mecabを使って品詞を判定し、文の中に同じ品詞のものがあれ
 `source code : make_sentenceXX.py`  
 Text Suggest APIから返された文を Proofreading API を用いて、点数化し、 Text Suggest API で返された文の中で一番良いものを次の評価に利用する。
 
-5. pdfを作成  
+5. PDFを作成  
 `source code : make_pdf.py`  
-python3 の reportlab を用いて、pdfを自動生成させる。
+python3 の reportlab を用いて、PDF(日記)を自動生成させる。
 
 ##  仕様技術
 
