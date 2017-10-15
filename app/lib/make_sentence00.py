@@ -3,6 +3,11 @@ from app.lib.env import ENV
 # from env import ENV
 
 def make_sentence(words):
+  """
+  作文を行う
+  @param  words : 単語リスト
+  @return 日本語文を返す
+  """
   prev_sentence = words[0]
   word = ""
   for w in range(0, len(words)):
@@ -66,6 +71,11 @@ def make_sentence(words):
   return prev_sentence
   
 if __name__ == "__main__":
+  """
+  ファイルを実行に動作
+  @return None
+  """
+    
   words = ['投げる','ピッチャー','ボール','ユニフォーム','野球','バッター','試合','打','球','サッカー','チーム','選手','赤い','着','する','緑','球場','バット','人','テニス']
   sentence = make_sentence(words)
   print(sentence)

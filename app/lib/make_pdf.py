@@ -12,9 +12,9 @@ import io
 class make_pdf:
     def __init__(self, sentence, img_url):
         """ pdfを自動生成 
-         >> sentence -> 文章
-         >> image_url -> 画像のURL
-         << /piclog.pdf が生成されます
+         @param  sentence -> 文章
+         @param image_url -> 画像のURL
+         return  /piclog.pdf が生成されます
         """
         self.pdf_canvas = self.set_info('piclog')
         self.print_title('piclog')
@@ -25,7 +25,11 @@ class make_pdf:
     
     # 初期設定
     def set_info(self, filename):
-        """ 初期設定 """
+        """
+        初期設定
+        @param  filename
+        @return canvas detail
+        """
         pdf_canvas = canvas.Canvas("./{0}.pdf".format(filename), bottomup=False, pagesize=letter)  # 原点は左上
         # [TODO] 考える
         pdf_canvas.setAuthor("しげる")
@@ -34,8 +38,11 @@ class make_pdf:
         
         return pdf_canvas
     
-    def print_title(self,word):
-        """ 見出しを描画 """
+    def print_title(self):
+        """
+        見出しを描画
+        @return None
+        """
         pdfmetrics.registerFont(UnicodeCIDFont("HeiseiKakuGo-W5"))
         pdfmetrics.registerFont(UnicodeCIDFont("HeiseiMin-W3"))
         self.pdf_canvas.setFont("HeiseiKakuGo-W5", 20)
@@ -46,7 +53,11 @@ class make_pdf:
         self.pdf_canvas.drawString(30, 45, "{0}({1}) 名前 : さきさか しげる".format(date, weekdays[now.weekday()]))
     
     def print_word(self, sentence):
-        """ 文字を描画 """
+        """
+        文字を描画
+        @param  sentence : pdfに書き込む日本語文
+        @return None
+        """
         pdfmetrics.registerFont(UnicodeCIDFont("HeiseiKakuGo-W5"))
         self.pdf_canvas.setFont("HeiseiKakuGo-W5", 20)
         step = 40
@@ -61,7 +72,10 @@ class make_pdf:
         return idx
     
     def print_box(self):
-      """ 罫線を描画 """
+      """
+      罫線を描画
+      @return None
+      """
       step = 40
       self.pdf_canvas.setStrokeColor(color.black)
       for i in range(26,586+step,step):
@@ -71,7 +85,11 @@ class make_pdf:
     
     # 画像
     def print_image(self, img_url):
-        """ 画像を描画 """
+        """
+        画像を描画
+        @param  img_url : 画像のURL
+        @return None
+        """
         f = io.BytesIO(urlopen(img_url).read())
         image = Image.open(f).transpose(Image.FLIP_TOP_BOTTOM)
         
@@ -82,6 +100,9 @@ class make_pdf:
         self.pdf_canvas.drawInlineImage(image,letter[0]/2-width/2,62-height, width, height)
 
 if __name__ == "__main__":
-    """ ファイルを実行に動作 """
+    """
+    ファイルを実行に動作
+    @return None
+    """
     sentence = 'a'*140
     make_pdf(sentence, 'http://img.mcdonalds.co.jp/index/graphic/main_170920a.jpg')

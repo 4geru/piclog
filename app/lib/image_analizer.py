@@ -2,9 +2,10 @@ from app.lib.env import ENV
 import http.client, urllib.request, urllib.parse, urllib.error, base64, json
         
 def image_analizer(img):
-    """ Azure Vision APIへリクエスト 
-     >> img : string URL
-     << english_words : list
+    """ 
+    Azure Vision APIへリクエスト 
+    @param  img : string URL
+    @return english_words list
     """    
     uri_base = 'westcentralus.api.cognitive.microsoft.com'
     headers = {
