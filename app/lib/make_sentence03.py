@@ -1,5 +1,4 @@
-# from app.lib.env import ENV
-from env import ENV
+from app.lib.env import ENV
 import MeCab, copy, requests, re
 import multiprocessing as multi
 
