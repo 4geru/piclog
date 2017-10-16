@@ -36,3 +36,4 @@ def main(argv):
   # make_pdf 文 -> pdf
   make_pdf(sentence,img)
   print(' >> finished')
+  return 0
