@@ -25,14 +25,43 @@ Please run command!
 コマンドを実行すると、piclog.pdfが生成されます。
 
 ```
- $ python3 _application_name_  _IMAGE_URL_
+ $ python3 index.py  _IMAGE_URL_
  $ ls
  piclog.pdf
 ```
 
 ### 環境構築
+ローカル環境で動かす場合には次の手順が必要になります
+
+- パッケージインストール  
+
 ```
  $ pip install -r requests.txt
+```
+
+- 必要なAPIキーを入力
+ローカル環境で作成する場合は、環境変数の設定または、.envファイルを作る必要があります。
+
+ 	- 環境変数での設定
+
+ ```
+export SUBSCRIPTION_KEY ='' # Azure Vision APIのKEY
+export TEXT_SUGGEST_KEY ='' # A3RTのTest Suggest APIのKEY
+export PROOFREADING_KEY ='' # A3RTのPROOFREADING APIのKEY
+$ export -p | grep KEY
+```
+
+	- .envでの設定
+.envファイルの作成
+
+```
+$ touch .env
+```
+
+```
+SUBSCRIPTION_KEY=''  # Azure Vision APIのKEY
+TEXT_SUGGEST_KEY='' # A3RTのTest Suggest APIのKEY
+PROOFREADING_KEY='' # A3RTのPROOFREADING APIのKEY
 ```
 
 ### testの方法
